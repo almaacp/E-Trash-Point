@@ -13,9 +13,9 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a href=""><img style="width: 300px" src="{{ asset('gambar/logo-judul-removebg.png') }}" alt=""></a>
-                    <ul class="navbar-nav gap-5">
-                        <li class="nav-item">Register</li>
-                        <li class="nav-item">Login</li>
+                    <ul class="navbar-nav gap-3">
+                        <li class="nav-item"><span class="badge text-bg-secondary" style="font-size: medium">Register</span></li>
+                        <li class="nav-item"><span class="badge text-bg-primary" style="font-size: medium">Login</span></li>
                     </ul>
                 </div>
             </nav>
