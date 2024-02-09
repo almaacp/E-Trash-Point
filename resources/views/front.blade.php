@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>E-Trash Point</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="mt-3">
@@ -31,12 +33,21 @@
             </nav>
         </div>
         <div>
-            ini isinya
+            <li class="list-group">Info Trash</li>
+            <li class="list-group">Katalog Hadiah</li>
         </div>
-        <div>
-            A&B Project
+        <div class="mt-5">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    Contact us: etrashpoint@mail.com
+                    <a>
+                        <img style="width: 150px" src="{{ asset('gambar/A&B-project.png') }}" alt="">
+                    </a>
+                </div>
+            </nav>
         </div>
     </div>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
+
 </html>
