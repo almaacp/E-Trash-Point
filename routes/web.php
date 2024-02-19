@@ -19,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',[FrontController::class,'index']);
+Route::get('login',[FrontController::class,'login']);
+Route::get('register',[FrontController::class,'register']);
