@@ -27,7 +27,24 @@ class FrontController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phonenumber' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+            'username' => 'required',
+            'password' => 'required |min:8',
+        ]);
+
+        session(['name' => $request->input('name')]);
+        session(['username' => $request->input('username')]);
+        session(['gender' => $request->input('gender')]);
+        session(['address' => $request->input('address')]);
+        session(['phonenumber' => $request->input('phonenumber')]);
+        session(['email' => $request->input('email')]);
+
+        return view('register-success');
     }
 
     /**
@@ -71,4 +88,85 @@ class FrontController extends Controller
     {
         return view('register');
     }
+    
+    public function infotrash()
+    {
+        return view('trash');
+    }
+    
+    public function kataloghadiah()
+    {
+        return view('katalog');
+    }
+
+    public function historibuangsampah()
+    {
+        return view('historibuang');
+    }
+
+    public function buangsampah()
+    {
+        return view('buang');
+    }
+
+    public function klaimhadiah()
+    {
+        return view('klaim');
+    }
+
+    public function pilihhadiah()
+    {
+        return view('pilih');
+    }
+
+    public function konter()
+    {
+        return view('konter');
+    }
+
+    public function profile()
+    {
+        return view('profile');
+    }
+
+    public function editprofile()
+    {
+        return view('editprofile');
+    }
+
+    public function voucher()
+    {
+        return view('voucher');
+    }
+
+    public function postlogin(Request $request)
+    {
+        return view('login-success');
+    }
+
+
+    public function closetrash(Request $request)
+    {
+        $data = $request->validate([
+            'trashcode' => 'required |min:7',
+        ]);
+
+        return view('historibuang');
+    }
+
+    public function postprofile(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'phonenumber' => 'required',
+            'gender' => 'required',
+            'email' => 'required',
+            'username' => 'required',
+            'password' => 'required |min:8',
+        ]);
+
+        return view('profile');
+    }
+
 }

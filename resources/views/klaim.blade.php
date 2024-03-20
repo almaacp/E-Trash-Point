@@ -1,0 +1,106 @@
+@extends('front')
+
+@section('content')
+
+<div class="container animated-content" style="padding-left: 3rem; padding-right: 3rem">
+    <div class="row justify-content-between">
+        <div class="col">
+            <h1 class="bold-text" style="font-size: 50px; color: green">KLAIM HADIAH</h1>
+        </div>
+        <div class="mt-1 col-auto">
+            <a href="/user/pilihhadiah" type="button" class="btn btn-outline-success" style="font-size: 18px">+ Klaim Hadiah</a>
+        </div>
+    </div>
+    <div style="font-size: 20px">
+        Info seputar hadiah dan poinnya dapat dilihat di <a href="{{ url('/user/kataloghadiah') }}" style="color: green">Katalog Hadiah</a>
+    </div>
+    <div style="font-size: 18px; font-weight:bold">
+        <br> Ketentuan klaim hadiah: 
+    </div>
+    <div style="font-size: 18px">
+        - Saat melakukan klaim, user secara otomatis akan mendapatkan voucher yang dapat ditukarkan dengan hadiah
+        <br> - Hadiah dapat diambil di cabang <a href="/user/konter" style="color:green">Konter E-Trash Point</a> mana pun
+        <br> - Masa berlaku voucher adalah 7 hari setelah tanggal klaim
+        <br> - User dapat menghapus voucher yang telah diklaim sebelum masa berlaku voucher habis dan poin user akan kembali seperti semula
+        <br> - User dapat mengganti hadiah yang telah diklaim maksimal 2 hari setelah tanggal klaim
+    </div>
+    <div class="mt-5">
+        <style>
+            .table th,
+            .table td {
+                text-align: center;
+                border-color: green;
+            }
+            .table th {
+                padding-bottom: 10px;
+                font-size: 23px;
+            }
+            .table td {
+                font-size: 20px;
+            }
+        </style>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal Klaim</th>
+                    <th>Nama Hadiah</th>
+                    <th>Poin</th>
+                    <th>Voucher</th>
+                    <th>Edit Klaim</th>
+                    <th>Hapus Klaim</th>
+                    <th>Status</th>
+                    <th>Tanggal Ambil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>20/2/2024</td>
+                    <td>Kaos</td>
+                    <td>100</td>
+                    <td></td>
+                    <td><a href=""></a></td>
+                    <td><a href=""></a></td>
+                    <td>Kadaluarsa</td>
+                    <td><i class="fas fa-times" style="color: red"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>27/2/2024</td>
+                    <td>Totebag</td>
+                    <td>50</td>
+                    <td></td>
+                    <td><a href=""></a></td>
+                    <td><a href=""></a></td>
+                    <td>Sudah diambil</td>
+                    <td>28/2/2024</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>28/2/2024</td>
+                    <td>Notebook</td>
+                    <td>30</td>
+                    <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
+                    <td><a href=""></a></td>
+                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></i></a></td>
+                    <td>Belum diambil</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>1/3/2024</td>
+                    <td>Notebook</td>
+                    <td>30</td>
+                    <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
+                    <td><a href="/user/pilihhadiah"><i class="fas fa-edit" style="color: blue"></i></a></td>
+                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></i></a></td>
+                    <td>Belum diambil</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>   
+
+@endsection
