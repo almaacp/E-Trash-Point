@@ -5,10 +5,10 @@
 <div class="container animated-content" style="padding-left: 15rem; padding-right: 15rem">
     <div class="row justify-content-between">
         <div class="col">
-            <h1 class="bold-text" style="font-size: 50px; color: green;">INFO TRASH</h1>
+            <h1 class="bold-text" style="font-size: 50px; color: green;">KONTER</h1>
         </div>
         <div class="mt-1 col-auto">
-            <a href="infotrash/add" type="button" class="btn btn-outline-success" style="font-size: 18px">+ ADD</a>
+            <a href="konter/add" type="button" class="btn btn-outline-success" style="font-size: 18px">+ ADD</a>
         </div>
     </div>
     <div class="mt-5">
@@ -29,45 +29,35 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Kode Trash</th>
-                    <th>Lokasi</th>
-                    <th>Jenis Trash</th>
-                    <th>Status Trash</th>
+                    <th>No</th>
+                    <th>Lokasi Konter</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>G-0001</td>
+                    <td>1</td>
                     <td>Jl. Tunjungan no 46</td>
-                    <td>Gelas Plastik</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
+                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
                     <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
                 </tr>
                 <tr>
-                    <td>K-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Kaleng</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
+                    <td>2</td>
+                    <td>Jl. Dharmahusada no 46</td>
+                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
                     <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
                 </tr>
                 <tr>
-                    <td>B6-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Botol Plastik 600ml</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
+                    <td>3</td>
+                    <td>Jl. Dr. Ir. Soekarno no 46</td>
+                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
                     <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
                 </tr>
                 <tr>
-                    <td>B1-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Botol Plastik 1L</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
+                    <td>4</td>
+                    <td>Jl. Diponegoro no 46</td>
+                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
                     <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
                 </tr>
             </tbody>

@@ -33,26 +33,42 @@
         .btn:hover {
             transform: translateY(-8px);
         }
+        .dropdown-menu {
+            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5)); 
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: #000; 
+        }
+
+        .dropdown-menu .dropdown-item i {
+            margin-right: 8px; 
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            color: white; 
+            background-color: green
+        }
     </style>            
 </head>
 
 <body @if (request()->is('admin')) style="background-color: rgba(210, 240, 230, 0.25);" @endif>
-    <div class="container-fluid">
+    <div class="container-fluid animated content">
         <div>
             <nav class="navbar navbar-expand-lg" style="background-color: rgba(210, 240, 230, 0.75)">
                 <div class="container-fluid">
                     
                     <ul class="navbar-nav gap-3">
-                        @if (!request()->is('admin'))
                         <li class="nav-item">
                             <div class="btn-group">
                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px">MENU</button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/admin/infotrash"><i class="fas fa-trash"></i> Info Trash</a></li>
-                                    <li><a class="dropdown-item" href="/admin/kataloghadiah"><i class="fas fa-gift"></i> Katalog Hadiah</a></li>
-                                    <li><a class="dropdown-item" href="/admin/konter"><i class="fas fa-store"></i> Konter</a></li>
-                                    <li><a class="dropdown-item" href="/admin/historibuangsampah"><i class="fas fa-history"></i> Histori Buang Sampah</a></li>
-                                    <li><a class="dropdown-item" href="/admin/klaimhadiah"><i class="fas fa-award"></i> Klaim Hadiah</a></li>
+                                    <li><a class="dropdown-item" href="/admin/infotrash"><i class="fas fa-trash" style="margin-right: 3pt"></i> Info Trash</a></li>
+                                    <li><a class="dropdown-item" href="/admin/kataloghadiah"><i class="fas fa-gift" style="margin-right: 3pt"></i> Katalog Hadiah</a></li>
+                                    <li><a class="dropdown-item" href="/admin/konter"><i class="fas fa-store" style="margin-right: 3pt"></i> Konter</a></li>
+                                    <li><a class="dropdown-item" href="/admin/historibuangsampah"><i class="fas fa-history" style="margin-right: 3pt"></i> Histori Buang Sampah</a></li>
+                                    <li><a class="dropdown-item" href="/admin/klaimhadiah"><i class="fas fa-award" style="margin-right: 3pt"></i> Klaim Hadiah</a></li>
+                                    <li><a class="dropdown-item" href="/admin/profileuser"><i class="fas fa-user-circle" style="margin-right: 3pt"></i> Profile User</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -64,21 +80,14 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/admin">
+                            <a href="/">
                                 <button type="button" class="btn btn-success">LOGOUT</button>
                             </a>
                         </li>
-                        @endif
-
-                        @if (request()->is('admin'))
-                        <li class="nav-item btn" style="font-size: 30px; color: green; font-weight: bold">
-                            ADMIN PAGE
-                        </li>
-                        @endif
 
                     </ul>
                     
-                    <img style="width: 300px" class="btn" src="{{ asset('gambar/logo-judul-removebg.png') }}" alt="">
+                    <a href="/admin"><img style="width: 300px" class="btn" src="{{ asset('gambar/logo-judul-removebg.png') }}" alt=""></a>
 
                 </div>
             </nav>

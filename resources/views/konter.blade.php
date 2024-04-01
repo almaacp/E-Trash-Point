@@ -35,7 +35,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>No.</th>
+                    <th>No</th>
                     <th>Lokasi Konter</th>
                 </tr>
             </thead>

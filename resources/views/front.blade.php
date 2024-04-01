@@ -41,7 +41,7 @@
             transform: translateY(-8px);
         }
         .dropdown-menu {
-            background-color: rgba(255, 255, 255, 0.3); 
+            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5)); 
         }
 
         .dropdown-menu .dropdown-item {
@@ -53,24 +53,24 @@
         }
 
         .dropdown-menu .dropdown-item:hover {
-            color: green; 
-            background-color: rgba(255, 255, 255, 0.7); 
+            color: white; 
+            background-color: green
         }
     </style>            
 </head>
 
-<body class="@if (request()->is('/','login','register','user','user/buangsampah','user/profile','user/editprofile','user/klaimhadiah/voucher'))
+<body class="@if (request()->is('/','login','register','user','user/buangsampah','user/profile','user/editprofile','user/klaimhadiah/voucher','user/notifikasi'))
     home
     @endif">
     <div class="container-fluid">
         <div>
             <nav class="navbar navbar-expand-lg" 
-            @if (!request()->is('/','login','register','user','user/buangsampah','user/profile','user/editprofile','user/klaimhadiah/voucher'))
+            @if (!request()->is('/','login','register','user','user/buangsampah','user/profile','user/editprofile','user/klaimhadiah/voucher','user/notifikasi'))
                 style="background-color: rgba(210, 240, 230, 0.75)"
             @endif>
                 <div class="container-fluid">
                     
-                    <ul class="navbar-nav gap-3">
+                    <ul class="navbar-nav gap-2">
                         <li class="nav-item">
                             <div class="btn-group">
                                 <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px">MENU</button>
@@ -104,6 +104,12 @@
                         @endif
 
                         @if (!request()->is('/','login','register','infotrash','kataloghadiah','konter'))
+                        <li class="nav-item">
+                            <a href="/user/notifikasi" class="nav-link btn" style="color: green">
+                                <i class="fas fa-bell"></i>
+                                <span class="badge bg-danger">3</span>
+                            </a>
+                        </li>                        
                         <li class="nav-item btn" style="font-size: 18px">
                             @if(session('username'))
                             <a href="/user/profile" style="color: green">
@@ -113,7 +119,7 @@
                         </li>
                         <li class="nav-item btn" style="font-size: 18px; margin-right: 3mm; color: green">
                             <i class="fas fa-coins" style="margin-right: 3mm"></i>150 POINT
-                        </li> 
+                        </li>
                         <li class="nav-item">
                             <a href="/">
                                 <button type="button" class="btn btn-success">LOGOUT</button>

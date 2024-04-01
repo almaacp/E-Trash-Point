@@ -61,13 +61,13 @@
                     <td>4</td>
                     <td>27/2/2024</td>
                     <td>B6-0001</td>
-                    <td>10</td>
+                    <td>Belum diverifikasi</td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td>27/2/2024</td>
                     <td>K-0001</td>
-                    <td>10</td>
+                    <td>Belum diverifikasi</td>
                 </tr>
             </tbody>
         </table>

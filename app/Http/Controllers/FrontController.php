@@ -44,7 +44,7 @@ class FrontController extends Controller
         session(['phonenumber' => $request->input('phonenumber')]);
         session(['email' => $request->input('email')]);
 
-        return view('register-success');
+        return view('login');
     }
 
     /**
@@ -78,15 +78,15 @@ class FrontController extends Controller
     {
         //
     }
-
-    public function login()
-    {
-        return view('login');
-    }
-
+    
     public function register()
     {
         return view('register');
+    }
+    
+    public function login()
+    {
+        return view('login');
     }
     
     public function infotrash()
@@ -139,9 +139,23 @@ class FrontController extends Controller
         return view('voucher');
     }
 
+    public function notif()
+    {
+        return view('notif');
+    }
+
     public function postlogin(Request $request)
     {
-        return view('login-success');
+        $data = $request->validate([
+            'username' => 'required',
+            'password' => 'required |min:8',
+        ]);
+
+        if ($data['username'] === 'admin') {
+           return redirect()->action([AdminController::class, 'index']);
+        } else {
+            return redirect()->action([FrontController::class, 'index']);
+        }
     }
 
 

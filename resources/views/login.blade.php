@@ -10,23 +10,29 @@
                 <div class="mt-2 text-body-secondary text-center">Don't have an account? <a href="{{ url('/register') }}" style="color: rgb(0, 185, 0)">Register</a></div>
                 <div class="row">
                     <div class="col">
-                        <form action="{{ url('user') }}" method="post">
+                        <form action="{{ old('username') == 'admin' ? url('admin') : url('user') }}" method="post">
                             @csrf
 
                             <br><br>
+                            
+                            <span class="text-danger">
+                                @error('username')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                             <div class="input-group mb-4">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <div class="form-floating">
                                     <input type="text" class="form-control" value="{{ old('username') }}" id="" placeholder="username" name="username">
                                     <label for="">USERNAME</label>
                                 </div>
-                                <span class="text-danger">
-                                    @error('username')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
                             </div>
 
+                            <span class="text-danger">
+                                @error('password')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                 <div class="form-floating">

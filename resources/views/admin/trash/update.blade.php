@@ -1,111 +1,69 @@
-@extends('front')
+@extends('admin/admin')
 
 @section('content')
 
-<div class="d-flex justify-content-center align-items-center">
-    <div class="card" style="width: 40rem;">
-        <div class="card-body animated-content">
-            <p class="card-text">
-                <h2 class="card-title text-center">EDIT PROFILE</h2>
-                <div class="row">
-                    <div class="col">
-                        <form action="/user/profile" method="post">
-                            @csrf
-                        
-                            <div class="mt-2">
-                                <label class="form-label" for="">NAMA LENGKAP</label>
-                                <input class="form-control" value="{{ session('name') }}" type="text" name="name" id="">
-                                <span class="text-danger">
-                                    @error('name')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
+<div class="container animated-content">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center" style="font-weight:bold; color: green">UPDATE TRASH</h1>
+            <p class="mb-5 text-center" style="font-size: 15pt">Update data trash</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form action="{{ url('/admin/infotrash') }}" method="put">
+                @csrf
 
-                            <div class="mt-2">
-                                <label class="form-label" for="">JENIS KELAMIN</label>
-                                <select class="form-select" name="gender" id="">
-                                    <option {{ session('gender') == 'Male' ? 'selected' : '' }}>Male</option>
-                                    <option {{ session('gender') == 'Female' ? 'selected' : '' }}>Female</option>
-                                </select>
-                            </div>
-
-                            <div class="mt-2">
-                                <label class="form-label" for="">ALAMAT</label>
-                                <input class="form-control" value="{{ session('address') }}" type="text" name="address" id="">
-                                <span class="text-danger">
-                                    @error('address')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-    
-                            <div class="mt-2">
-                                <label class="form-label" for="">NOMOR TELEPON</label>
-                                <input class="form-control" value="{{ session('phonenumber') }}" type="text" name="phonenumber" id="">
-                                <span class="text-danger">
-                                    @error('phonenumber')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-
-                            <div class="mt-2">
-                                <label class="form-label" for="">EMAIL</label>
-                                <input class="form-control" value="{{ session('email') }}" type="email" name="email" id="">
-                                <span class="text-danger">
-                                    @error('email')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-
-                            <div class="mt-2">
-                                <label class="form-label" for="">USERNAME</label>
-                                <input class="form-control" value="{{ session('username') }}" type="text" name="username" id="">
-                                <span class="text-danger">
-                                    @error('username')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-
-                            <div class="mt-2">
-                                <label class="form-label" for="password">PASSWORD</label>
-                                <input class="form-control" type="password" name="password" id="password">
-                                <span class="text-danger">
-                                    @error('password')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                                <div class="row">
-                                    <div class="col">
-                                        <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <script>
-                            function togglePasswordVisibility() {
-                                var passwordInput = document.getElementById("password");
-                                if (passwordInput.type === "password") {
-                                    passwordInput.type = "text";
-                                } else {
-                                    passwordInput.type = "password";
-                                }
-                            }
-                            </script>
-
-                            <div class="mt-5 d-flex justify-content-between">
-                                <a href="{{ url('/') }}" class="btn btn-secondary">BACK</a>
-                                <button class="btn btn-success" type="submit">EDIT</button>
-                            </div>
-
-                        </form>
+                <span class="text-danger">
+                    @error('locate')
+                        {{ $message }}
+                    @enderror
+                </span>
+                <div class="mt-2">
+                    <div class="input-group mb-4">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                        <div class="form-floating">
+                            <input class="form-control" value="Jl. Tunjungan no 46" type="text" name="locate" id="locate" placeholder=" ">
+                            <label for="locate">LOKASI</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-          </p>
+            
+                <div class="mt-2">
+                    <div class="input-group mb-4">
+                        <span class="input-group-text"><i class="fas fa-trash"></i></span>
+                        <div class="form-floating">
+                            <select class="form-select" name="trashtype" id="trashtype">
+                                <option {{ session('trashtype') == 'Gelas Plastik' ? 'selected' : '' }}>Gelas Plastik</option>
+                                <option {{ session('trashtype') == 'Kaleng' ? 'selected' : '' }}>Kaleng</option>
+                                <option {{ session('trashtype') == 'Botol Plastik 60 mL' ? 'selected' : '' }}>Botol Plastik 60 mL</option>
+                                <option {{ session('trashtype') == 'Botol Plastik 1 L' ? 'selected' : '' }}>Botol Plastik 1 L</option>
+                            </select>
+                            <label for="trashtype">JENIS TRASH</label>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="mt-2">
+                    <div class="input-group mb-4">
+                        <span class="input-group-text"><i class="fas fa-check-circle"></i></span>
+                        <div class="form-floating">
+                            <select class="form-select" name="trashstatus" id="trashstatus">
+                                <option {{ session('trashstatus') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                                <option {{ session('trashstatus') == 'Maintenance' ? 'selected' : '' }}>Maintenance</option>
+                            </select>
+                            <label for="trashstatus">STATUS TRASH</label>
+                        </div>
+                    </div>
+                </div>
+            
+
+                <div class="mt-5 text-center">
+                    <a href="{{ url('admin/infotrash') }}" class="btn btn-secondary">BACK</a>
+                    <button class="btn btn-success" style="margin-left: 20px" type="submit">UPDATE</button>
+                </div>
+            
+            </form>
         </div>
     </div>
 </div>

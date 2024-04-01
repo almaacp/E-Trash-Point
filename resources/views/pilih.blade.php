@@ -3,13 +3,16 @@
 @section('content')
 
 <div class="container animated-content" style="padding-left: 3rem; padding-right: 3rem">
-    <div class="row">
-        <div>
+    <div class="row justify-content-between">
+        <div class="col">
             <h1 class="bold-text" style="font-size: 50px; color: green">PILIH HADIAH</h1>
         </div>
-        <div style="font-size: 20px">
-            Cek jumlah poin yang telah dikumpulkan dan tukar dengan hadiah yang jumlah poinnya mencukupi.
+        <div class="col-auto">
+            <a href="/user/klaimhadiah" class="btn btn-secondary" style="font-size: 20px">BACK</a>
         </div>
+    </div>
+    <div style="font-size: 20px">
+        Cek jumlah poin yang telah dikumpulkan dan tukar dengan hadiah yang jumlah poinnya mencukupi.
     </div>
     <form action="{{ url('/user/klaimhadiah') }}" method="post">
         @csrf
@@ -55,7 +58,6 @@
             </div>
         </div>
     </form>
-    <a href="/user/klaimhadiah" class="mt-5 btn btn-secondary" style="font-size: 20px">BACK</a>
 </div>   
 
 @endsection
