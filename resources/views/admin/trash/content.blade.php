@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container animated-content" style="padding-left: 15rem; padding-right: 15rem">
+<div class="container animated-content" style="padding-left: 10rem; padding-right: 10rem">
     <div class="row justify-content-between">
         <div class="col">
             <h1 class="bold-text" style="font-size: 50px; color: green;">INFO TRASH</h1>
@@ -12,20 +12,6 @@
         </div>
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 25px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -33,47 +19,53 @@
                     <th>Lokasi</th>
                     <th>Jenis Trash</th>
                     <th>Status Trash</th>
-                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>G-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Gelas Plastik</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>K-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Kaleng</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>B6-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Botol Plastik 600ml</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>B1-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Botol Plastik 1L</td>
-                    <td>Aktif</td>
-                    <td><a href="infotrash/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
+                @foreach ($trashes as $trash)
+                    <tr>
+                        <td>{{ $trash->idTrash }}</td>
+                        <td>{{ $trash->lokasiTrash }}</td>
+                        <td>{{ $trash->jenisTrash }}</td>
+                        <td>
+                            @if($trash->statusTrash == 'Aktif')
+                                <form action="{{ url('admin/infotrash/update-status/'.$trash->idTrash) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-info">
+                                        AKTIF
+                                    </button>
+                                </form>
+                            @else
+                                <form action="{{ url('admin/infotrash/update-status/'.$trash->idTrash) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-warning">
+                                        MAINTENANCE
+                                    </button>
+                                </form>
+                            @endif
+                        </td>                        
+                        <td>
+                            <form action="{{ url('admin/infotrash/'.$trash->idTrash) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link" style="color: red;">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
         <br>
-        <a href="" type="button" class="btn btn-danger" style="font-size: 18px">DELETE ALL</a>
+        <form action="{{ url('admin/infotrash') }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" style="font-size: 18px">
+                DELETE ALL
+            </button>
+        </form>
     </div>
 </div>   
 

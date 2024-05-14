@@ -1,0 +1,86 @@
+/* admin */
+body {
+    font-family: 'Fredoka', sans-serif;
+}
+.bold-text {
+    font-weight: bold;
+}
+.animated-content {
+opacity: 0;
+transform: translateY(50px);
+transition: opacity 1s ease, transform 1s ease;
+}
+.animated-content.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+.btn {
+    transition: transform 0.5s ease;
+}
+.btn:hover {
+    transform: translateY(-8px);
+}
+.dropdown-menu {
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5)); 
+}
+
+.dropdown-menu .dropdown-item {
+    color: #000; 
+}
+
+.dropdown-menu .dropdown-item i {
+    margin-right: 8px; 
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: white; 
+    background-color: green
+}
+
+/* home */
+.card-title {
+    color: green;
+    font-weight: bold;
+}
+.btn-home {
+    margin-top: 20pt;
+}
+
+/* profile */
+.table th,            
+.table td {
+    text-align: center;
+    border-color: green;
+}
+.table th {
+    padding-bottom: 10px;
+    font-size: 22px;
+}
+.table td {
+    font-size: 18px;
+}
+
+/* other table */
+.table th, 
+.table td {
+    text-align: center;
+    border-color: green;
+}
+.table th {
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+.table td {
+    font-size: 20px;
+}
+
+/* katalog */
+.card-img-top {
+    size: 512px
+}
+.card-text {
+    font-size: 18px
+}
+.card-title-katalog {
+    color: white;
+}

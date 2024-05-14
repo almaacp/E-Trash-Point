@@ -18,20 +18,6 @@
             style="color: rgb(0, 200, 0)">Klaim Hadiah</a>.
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 25px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -39,23 +25,16 @@
                     <th>Lokasi Konter</th>
                 </tr>
             </thead>
+            @php
+                $no=1;
+            @endphp
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Jl. Tunjungan no 46</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jl. Dharmahusada no 46</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Jl. Dr. Ir. Soekarno no 46</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Jl. Diponegoro no 46</td>
-                </tr>
+                @foreach ($konters as $konter)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $konter->lokasiKonter }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

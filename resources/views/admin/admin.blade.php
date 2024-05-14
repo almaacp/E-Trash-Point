@@ -10,46 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('admin.css') }}">
     
-    <style>
-        body {
-            font-family: 'Fredoka', sans-serif;
-        }
-        .bold-text {
-            font-weight: bold;
-        }
-        .animated-content {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: opacity 1s ease, transform 1s ease;
-        }
-        .animated-content.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .btn {
-            transition: transform 0.5s ease;
-        }
-        .btn:hover {
-            transform: translateY(-8px);
-        }
-        .dropdown-menu {
-            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5)); 
-        }
-
-        .dropdown-menu .dropdown-item {
-            color: #000; 
-        }
-
-        .dropdown-menu .dropdown-item i {
-            margin-right: 8px; 
-        }
-
-        .dropdown-menu .dropdown-item:hover {
-            color: white; 
-            background-color: green
-        }
-    </style>            
 </head>
 
 <body @if (request()->is('admin')) style="background-color: rgba(210, 240, 230, 0.25);" @endif>
@@ -74,7 +36,7 @@
                         </li>
 
                         <li class="nav-item btn" style="font-size: 18px">
-                            <a href="/user/profile" style="color: green">
+                            <a href="" style="color: green">
                                 <i class="fas fa-user" style="margin-right: 3mm"></i>ADMIN
                             </a>
                         </li>
@@ -111,20 +73,7 @@
     </div>
     
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var animatedElements = document.querySelectorAll('.animated-content');
-            function animateElements() {
-                animatedElements.forEach(function(element, index) {
-                    setTimeout(function() {
-                        element.classList.add('animated');
-                    }, index * 200); 
-                });
-            }
-            setTimeout(animateElements, 100);
-        });
-    </script>
+    <script src="{{ asset('admin.js') }}"></script>
 
 </body>
 

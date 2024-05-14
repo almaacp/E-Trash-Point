@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container animated-content" style="padding-left: 3rem; padding-right: 3rem">
+<div class="container animated-content" style="padding-left: 8rem; padding-right: 8rem">
     <div class="row">
         <div>
             <h1 class="bold-text" style="font-size: 50px; color: green">KATALOG HADIAH</h1>
@@ -18,42 +18,23 @@
         </div>
     </div>
     <div class="mt-5 row">
-        <style>
-            .card-img-top {
-                size: 512px
-            }
-            .card-text {
-                font-size: 18px
-            }
-        </style>
-        <div class="col">
-            <div class="card text-bg-success mb-3" style="width: 18rem;">
-                <img src="{{ asset('gambar/kaos.png') }}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h2 class="card-title">KAOS</h2>
-                    <p class="card-text">100 poin</p>
+        @if($hadiahs->isEmpty())
+        @else
+            @foreach ($hadiahs as $hadiah)
+            <div class="col-4">
+                <div class="card text-bg-success mb-3" style="width: 18rem;">
+                    <img src="{{ asset('gambar/'.$hadiah->gambarHadiah) }}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h2 class="card-title-katalog">{{ $hadiah->namaHadiah }}</h2>
+                        <p class="card-text">{{ $hadiah->poinHadiah." poin" }}</p>
+                        <a type="button" class="mt-3 card-text btn btn-light" href="{{ url('user/kataloghadiah/'.$hadiah->idHadiah.'/stok') }}">Cek Stok</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card text-bg-success mb-3" style="width: 18rem;">
-                <img src="{{ asset('gambar/notebook.png') }}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h2 class="card-title">NOTEBOOK</h2>
-                    <p class="card-text">30 poin</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card text-bg-success mb-3" style="width: 18rem;">
-                <img src="{{ asset('gambar/totebag.png') }}" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h2 class="card-title">TOTEBAG</h2>
-                    <p class="card-text">50 poin</p>
-                </div>
-            </div>
-        </div>
+            </div>            
+            @endforeach
+        @endif
     </div>
+    <br>
 </div>   
 
 @endsection

@@ -9,20 +9,6 @@
         </div>
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 23px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -33,7 +19,6 @@
                     <th>Poin</th>
                     <th>Voucher</th>
                     <th>Status</th>
-                    <th>Tanggal Ambil</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +30,6 @@
                     <td>30</td>
                     <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
                     <td><button id="claimButton" class="btn btn-danger" disabled>Kadaluarsa</button></td>
-                    <td>21/2/2024</td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -55,7 +39,6 @@
                     <td>30</td>
                     <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
                     <td><button id="claimButton" class="btn btn-danger" disabled>Kadaluarsa</button></td>
-                    <td>21/2/2024</td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -65,7 +48,6 @@
                     <td>30</td>
                     <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
                     <td><button id="claimButton" class="btn btn-outline-danger" onclick="claimGift(this)">Belum Diambil</button></td>
-                    <td>21/2/2024</td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -75,7 +57,6 @@
                     <td>30</td>
                     <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
                     <td><button id="claimButton" class="btn btn-outline-danger" onclick="claimGift(this)">Belum Diambil</button></td>
-                    <td>21/2/2024</td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -85,7 +66,6 @@
                     <td>30</td>
                     <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
                     <td><button id="claimButton" class="btn btn-outline-danger" onclick="claimGift(this)">Belum Diambil</button></td>
-                    <td>21/2/2024</td>
                 </tr>
                 <tr>
                     <td>6</td>
@@ -95,20 +75,10 @@
                     <td>30</td>
                     <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
                     <td><button id="claimButton" class="btn btn-outline-danger" onclick="claimGift(this)">Belum Diambil</button></td>
-                    <td>21/2/2024</td>
                 </tr>
             </tbody>
         </table>
     </div>
-</div> 
-
-<script>
-    function claimGift(button) {
-        button.textContent = "Sudah Diambil";
-        button.disabled = true;
-        button.classList.remove('btn-outline-danger');
-        button.classList.add('btn-success');
-    }
-</script>
+</div>
 
 @endsection

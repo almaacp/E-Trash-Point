@@ -27,20 +27,6 @@
         <br> - Sampah botol plastik 1L = 5 point/pcs
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 25px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -51,30 +37,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>G-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Gelas Plastik</td>
-                    <td>Aktif</td>
-                </tr>
-                <tr>
-                    <td>K-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Kaleng</td>
-                    <td>Aktif</td>
-                </tr>
-                <tr>
-                    <td>B6-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Botol Plastik 600ml</td>
-                    <td>Aktif</td>
-                </tr>
-                <tr>
-                    <td>B1-0001</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td>Botol Plastik 1L</td>
-                    <td>Aktif</td>
-                </tr>
+                @foreach ($trashes as $trash)
+                    <tr>
+                        <td>{{ $trash->idTrash }}</td>
+                        <td>{{ $trash->lokasiTrash }}</td>
+                        <td>{{ $trash->jenisTrash }}</td>
+                        <td>{{ $trash->statusTrash }}</td> 
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -9,20 +9,6 @@
         </div>
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 23px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -86,15 +72,6 @@
             </tbody>
         </table>
     </div>
-</div> 
-
-<script>
-    function verif(button) {
-        button.textContent = "Terverifikasi";
-        button.disabled = true;
-        button.classList.remove('btn-outline-danger');
-        button.classList.add('btn-success');
-    }
-</script>
+</div>
 
 @endsection

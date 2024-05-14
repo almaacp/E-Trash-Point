@@ -14,11 +14,6 @@
             <form action="{{ url('/admin/infotrash') }}" method="post">
                 @csrf
 
-                <span class="text-danger">
-                    @error('trashcode')
-                    {{ $message }}
-                    @enderror
-                </span>
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-code"></i></span>
                     <div class="form-floating">
@@ -26,39 +21,43 @@
                         <label for="codetrash">KODE TRASH</label>
                     </div>
                 </div>
-                
+                <span class="text-danger">
+                    @error('trashcode')
+                    {{ $message }}
+                    @enderror
+                </span>
+
+                <div class="input-group mb-4">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <div class="form-floating">
+                        <input class="form-control form-control-sm" value="{{ old('locate') }}" type="text" name="locate" id="locate" placeholder=" ">
+                        <label for="locate">LOKASI TRASH</label>
+                    </div>
+                </div>
                 <span class="text-danger">
                     @error('locate')
                     {{ $message }}
                     @enderror
                 </span>
-                <div class="input-group mb-4">
-                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                    <div class="form-floating">
-                        <input class="form-control form-control-sm" value="{{ old('locate') }}" type="text" name="locate" id="locate" placeholder=" ">
-                        <label for="locate">LOKASI</label>
-                    </div>
-                </div>
                 
-                <span class="text-danger">
-                    @error('trashtype')
-                        {{ $message }}
-                    @enderror
-                </span>
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-trash"></i></span>
                     <div class="form-floating">
-                        <select class="form-select form-control-sm" name="trashtype" id="trashtype">
+                        <select class="form-select form-control-sm" name="idJenisTrash" id="idJenisTrash">
                             <option selected disabled>Pilih Jenis Trash</option>
-                            <option>Gelas Plastik</option>
-                            <option>Kaleng</option>
-                            <option>Botol Plastik 60 mL</option>
-                            <option>Botol Plastik 1 L</option>
+                            @foreach($jenistrashes as $jenisTrash)
+                                <option value="{{ $jenisTrash->idJenisTrash }}">{{ $jenisTrash->jenisTrash }}</option>
+                            @endforeach
                         </select>
-                        <label for="trashtype">JENIS TRASH</label>
+                        <label for="idJenisTrash">JENIS TRASH</label>
                     </div>
                 </div>               
-
+                <span class="text-danger">
+                    @error('idJenisTrash')
+                        {{ $message }}
+                    @enderror
+                </span>
+                
                 <div class="mt-5 text-center">
                     <a href="{{ url('/admin/infotrash') }}" class="btn btn-secondary">BACK</a>
                     <button class="btn btn-success" style="margin-left: 20px" type="submit">ADD</button>

@@ -2,16 +2,6 @@
 
 @section('content')
 
-<style>
-    .card-title {
-        color: green;
-        font-weight: bold;
-    }
-    .btn-home {
-        margin-top: 20pt;
-    }
-</style>
-
 <div class="animated-content">
     <h1 class="text-center">ADMIN DASHBOARD</h1><br><br>
     <div class="row">

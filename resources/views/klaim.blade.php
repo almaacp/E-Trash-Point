@@ -25,20 +25,6 @@
         <br> - User dapat mengganti hadiah yang telah diklaim maksimal 2 hari setelah tanggal klaim
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 23px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>

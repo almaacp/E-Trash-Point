@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konter;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -62,49 +64,10 @@ class AdminController extends Controller
         //
     }
 
-    public function trash()
+    public function katalogstok()
     {
-        return view('admin/trash/content');
-    }
-
-    public function trashadd()
-    {
-        return view('admin/trash/add');
-    }
-
-    public function trashupdate()
-    {
-        return view('admin/trash/update');
-    }
-
-    public function katalog()
-    {
-        return view('admin/katalog/content');
-    }
-
-    public function katalogadd()
-    {
-        return view('admin/katalog/add');
-    }
-
-    public function katalogupdate()
-    {
-        return view('admin/katalog/update');
-    }
-
-    public function konter()
-    {
-        return view('admin/konter/content');
-    }
-
-    public function konteradd()
-    {
-        return view('admin/konter/add');
-    }
-
-    public function konterupdate()
-    {
-        return view('admin/konter/update');
+        $konters = Konter::all();
+        return view('admin.katalog.stok',['konters'=>$konters]);
     }
 
     public function klaim()
@@ -119,65 +82,14 @@ class AdminController extends Controller
 
     public function profile()
     {
-        return view('admin/profile/content');
+        $penggunas = Pengguna::all();
+        return view('admin/profile/content',['penggunas'=>$penggunas]);
     }
 
-    public function posttrashadd(Request $request)
+    public function destroyUser($idpengguna)
     {
-        $data = $request->validate([
-            'trashcode' => 'required',
-            'locate' => 'required',
-            'trashtype' => 'required',
-        ]);
-        return view('admin/trash/content');
-    }
-
-    public function posttrashupdate(Request $request)
-    {
-        $data = $request->validate([
-            'locate' => 'required',
-            'trashtype' => 'required',
-            'trashstatus' => 'required',
-        ]);
-        return view('admin/trash/content');
-    }
-    
-    public function postkatalogadd(Request $request)
-    {
-        $data = $request->validate([
-            'giftname' => 'required',
-            'giftpoint' => 'required',
-            'stock' => 'required',
-            'giftimage' => 'required',
-        ]);
-        return view('admin/katalog/content');
-    }
-
-    public function postkatalogupdate(Request $request)
-    {
-        $data = $request->validate([
-            'giftname' => 'required',
-            'giftpoint' => 'required',
-            'stock' => 'required',
-            'giftimage' => 'required',
-        ]);
-        return view('admin/katalog/content');
-    }
-
-    public function postkonteradd(Request $request)
-    {
-        $data = $request->validate([
-            'locate' => 'required',
-        ]);
-        return view('admin/konter/content');
-    }
-
-    public function postkonterupdate(Request $request)
-    {
-        $data = $request->validate([
-            'locate' => 'required',
-        ]);
-        return view('admin/konter/content');
+        Pengguna::where('idpengguna','=',$idpengguna)->delete();
+        return redirect('admin/profileuser');
     }
 
 }

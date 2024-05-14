@@ -11,8 +11,12 @@
     </div>
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <form action="{{ url('/admin/kataloghadiah') }}" method="put">
+            <form action="{{ url('/admin/kataloghadiah/'.$hadiahs->idHadiah) }}" method="post">
                 @csrf
+
+                @php
+                    $giftIdFromURL = request()->segment(3);
+                @endphp
 
                 <span class="text-danger">
                     @error('giftname')
@@ -22,7 +26,7 @@
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-gift"></i></span>
                     <div class="form-floating">
-                        <input class="form-control form-control-sm" value="KAOS" type="text" name="giftname" id="giftname" placeholder=" ">
+                        <input class="form-control form-control-sm" value="{{ $hadiahs->namaHadiah }}" type="text" name="giftname" id="giftname" placeholder=" ">
                         <label for="giftname">NAMA HADIAH</label>
                     </div>
                 </div>
@@ -35,21 +39,8 @@
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-coins"></i></span>
                     <div class="form-floating">
-                        <input class="form-control form-control-sm" value="100" type="number" name="giftpoint" id="giftpoint" placeholder=" ">
+                        <input class="form-control form-control-sm" value="{{ $hadiahs->poinHadiah }}" type="number" name="giftpoint" id="giftpoint" placeholder=" ">
                         <label for="giftpoint">POIN HADIAH</label>
-                    </div>
-                </div>
-
-                <span class="text-danger">
-                    @error('stock')
-                    {{ $message }}
-                    @enderror
-                </span>
-                <div class="input-group mb-4">
-                    <span class="input-group-text"><i class="fas fa-box"></i></span>
-                    <div class="form-floating">
-                        <input class="form-control form-control-sm" value="200" type="number" name="stock" id="stock" placeholder=" ">
-                        <label for="stock">STOK</label>
                     </div>
                 </div>
 
@@ -61,11 +52,10 @@
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-image"></i></span>
                     <div class="form-floating">
-                        <input class="form-control form-control-sm" value="{{ session('giftimage') }}" type="file" name="giftimage" id="giftimage" placeholder=" " accept="image/*">
+                        <input class="form-control form-control-sm" type="file" name="giftimage" id="giftimage" placeholder=" " accept="image/*">
                         <label for="giftimage">GAMBAR HADIAH</label>
                     </div>
                 </div>
-            
 
                 <div class="mt-5 text-center">
                     <a href="{{ url('admin/kataloghadiah') }}" class="btn btn-secondary">BACK</a>

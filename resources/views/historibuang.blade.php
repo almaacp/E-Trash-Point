@@ -15,20 +15,6 @@
         Info seputar trash, kode, poin, dan lokasinya dapat dilihat di <a href="{{ url('/user/infotrash') }}" style="color: rgb(0, 200, 0)">Info Trash</a>
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 25px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -39,36 +25,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>25/2/2024</td>
-                    <td>B1-0001</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>25/2/2024</td>
-                    <td>B6-0001</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>25/2/2024</td>
-                    <td>K-0001</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>27/2/2024</td>
-                    <td>B6-0001</td>
-                    <td>Belum diverifikasi</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>27/2/2024</td>
-                    <td>K-0001</td>
-                    <td>Belum diverifikasi</td>
-                </tr>
+                @foreach ($detailtrashes as $detailtrash)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $detailtrash->tglPembuangan }}</td>
+                        <td>{{ $detailtrash->idTrash }}</td>
+                        <td>{{ $detailtrash->jumlahPoin }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

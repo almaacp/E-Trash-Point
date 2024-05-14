@@ -11,19 +11,23 @@
                     <div class="col">
                         <form id="trashForm" action="{{ url('/user/historibuangsampah') }}" method="post">
                             @csrf
-            
                             <div class="mt-4">
-                                <label class="form-label" style="font-size: 17px" for="">Pilih kode trash untuk membuka tempat sampah</label>
+                                <label class="form-label" style="font-size: 17px" for="trashcode">Pilih kode trash untuk membuka tempat sampah</label>
                                 <select class="form-select" name="trashcode" id="trashcode">
                                     <option value="" disabled selected>Pilih Kode Trash</option>
-                                    <option value="G-0001">G-0001</option>
-                                    <option value="K-0001">K-0001</option>
-                                    <option value="B6-0001">B6-0001</option>
-                                    <option value="B1-0001">B1-0001</option>
+                                    @foreach ($trashes as $trash)
+                                        <option value="{{ $trash->idTrash }}">{{ $trash->idTrash }}</option>
+                                    @endforeach                                    
                                 </select>
                                 <span class="text-danger" id="error-message"></span>
-                            </div>                            
-
+                            </div>
+                            
+                            <div id="additionalForm" class="mt-4" style="display: none;">
+                                <label class="form-label" style="font-size: 17px" for="trashAmount">Jumlah Sampah</label>
+                                <input type="number" class="form-control" name="trashAmount" id="trashAmount" min="0" step="0.01" required>
+                                <span class="text-danger" id="error-message-amount"></span>
+                            </div>
+                        
                             <div class="mt-5 text-body-secondary">Kode trash dapat dilihat di <a href="{{ url('/user/infotrash') }}" style="color: rgb(0, 185, 0)">Info Trash</a></div>
                             
                             <div class="mt-5 d-flex justify-content-between align-items-center"> 
@@ -34,8 +38,8 @@
                                     <button id="openCloseButton" class="btn btn-success">OPEN</button>
                                 </div>
                             </div>    
-                            
                         </form>
+                        
                     </div>
                 </div>
             </p>
@@ -43,50 +47,5 @@
     </div>
 </div>
 <div><br><br></div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('openCloseButton').addEventListener('click', function(event) {
-            event.preventDefault();
-
-            var button = document.getElementById('openCloseButton');
-            var trashcodeInput = document.getElementById('trashcode');
-            var errorMessage = document.getElementById('error-message');
-            var backButton = document.getElementById('backButton'); 
-
-            if (button.innerHTML === 'OPEN') {
-                if (!trashcodeInput.value.trim()) {
-                    errorMessage.textContent = 'The trashcode field is required.';
-                    return;
-                } else {
-                    errorMessage.textContent = ''; 
-                }
-                
-                trashcodeInput.disabled = true;
-                
-                backButton.style.display = 'none';
-            }
-
-            if (button.innerHTML === 'OPEN') {
-                button.innerHTML = 'CLOSE';
-                button.classList.remove('btn-success');
-                button.classList.add('btn-danger');
-            } else {
-                // Tambahkan logika untuk menampilkan pop-up di sini
-                var confirmation = confirm('Apakah Anda yakin ingin menutup tempat sampah?');
-                if (confirmation) {
-                    window.location.href = "{{ url('/user/historibuangsampah') }}";
-                } else {
-                    // Jika pengguna membatalkan, kembalikan tombol ke keadaan OPEN
-                    button.innerHTML = 'OPEN';
-                    button.classList.remove('btn-danger');
-                    button.classList.add('btn-success');
-                    trashcodeInput.disabled = false;
-                    backButton.style.display = 'block';
-                }
-            }
-        });
-    });
-</script>
 
 @endsection

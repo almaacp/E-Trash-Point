@@ -41,19 +41,6 @@
                 </div>
 
                 <span class="text-danger">
-                    @error('stock')
-                    {{ $message }}
-                    @enderror
-                </span>
-                <div class="input-group mb-4">
-                    <span class="input-group-text"><i class="fas fa-box"></i></span>
-                    <div class="form-floating">
-                        <input class="form-control form-control-sm" value="{{ old('stock') }}" type="number" name="stock" id="stock" placeholder=" ">
-                        <label for="stock">STOK</label>
-                    </div>
-                </div>
-
-                <span class="text-danger">
                     @error('giftimage')
                     {{ $message }}
                     @enderror

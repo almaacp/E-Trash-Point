@@ -11,8 +11,9 @@
     </div>
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <form action="{{ url('/admin/konter') }}" method="post">
+            <form action="{{ url('/admin/konter/'.$konters->first()->idKonter) }}" method="post">
                 @csrf
+                @method('PUT')
                 
                 <span class="text-danger">
                     @error('locate')
@@ -22,14 +23,14 @@
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                     <div class="form-floating">
-                        <input class="form-control form-control-sm" value="Jl. Tunjungan no 46" type="text" name="locate" id="locate" placeholder=" ">
+                        <input class="form-control form-control-sm" value="{{ $konters->first()->lokasiKonter }}" type="text" name="locate" id="locate" placeholder=" ">
                         <label for="locate">LOKASI KONTER</label>
                     </div>
                 </div>              
 
                 <div class="mt-5 text-center">
                     <a href="{{ url('/admin/konter') }}" class="btn btn-secondary">BACK</a>
-                    <button class="btn btn-success" style="margin-left: 20px" type="submit">ADD</button>
+                    <button class="btn btn-success" style="margin-left: 20px" type="submit">UPDATE</button>
                 </div>
             </form>
         </div>

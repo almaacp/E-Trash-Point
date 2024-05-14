@@ -39,7 +39,7 @@
                                     <input type="password" class="form-control" id="password" placeholder="password" name="password">
                                     <label for="">PASSWORD</label>
                                 </div>
-                                <span class="input-group-text bg-white" onclick="togglePasswordVisibility()">
+                                <span class="input-group-text bg-white" onclick="togglePasswordVisibility('password', 'password-toggle')">
                                     <i id="password-toggle" class="fas fa-eye-slash"></i>
                                 </span>
                             </div>
@@ -58,21 +58,10 @@
 </div>
 <div class="mt-4"></div>
 
-<script>
-    function togglePasswordVisibility() {
-        var passwordInput = document.getElementById("password");
-        var passwordToggle = document.getElementById("password-toggle");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            passwordToggle.classList.remove("fa-eye-slash");
-            passwordToggle.classList.add("fa-eye");
-        } else {
-            passwordInput.type = "password";
-            passwordToggle.classList.remove("fa-eye");
-            passwordToggle.classList.add("fa-eye-slash");
-        }
-    }
-</script>
+@if(session('error'))
+    <script>
+        alert('{{ session('error') }}');
+    </script>
+@endif
 
 @endsection

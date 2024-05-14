@@ -64,8 +64,8 @@
                                 <div class="form-floating">
                                     <select class="form-select" name="gender" id="gender">
                                         <option selected disabled>Pilih Jenis Kelamin</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </select>
                                     <label for="trashtype">JENIS KELAMIN</label>
                                 </div>
@@ -108,27 +108,10 @@
                                     <input class="form-control" type="password" name="password" id="password" placeholder=" ">
                                     <label for="password">PASSWORD</label>
                                 </div>
-                                <span class="input-group-text bg-white" onclick="togglePasswordVisibility()">
+                                <span class="input-group-text bg-white" onclick="togglePasswordVisibility('password', 'password-toggle')">
                                     <i id="password-toggle" class="fas fa-eye-slash"></i>
                                 </span>
                             </div>
-
-                            <script>
-                                function togglePasswordVisibility() {
-                                    var passwordInput = document.getElementById("password");
-                                    var passwordToggle = document.getElementById("password-toggle");
-
-                                    if (passwordInput.type === "password") {
-                                        passwordInput.type = "text";
-                                        passwordToggle.classList.remove("fa-eye-slash");
-                                        passwordToggle.classList.add("fa-eye");
-                                    } else {
-                                        passwordInput.type = "password";
-                                        passwordToggle.classList.remove("fa-eye");
-                                        passwordToggle.classList.add("fa-eye-slash");
-                                    }
-                                }
-                            </script>
                             
                             <div class="mt-5 d-flex justify-content-between">
                                 <a href="{{ url('/') }}" class="btn btn-secondary">BACK</a>

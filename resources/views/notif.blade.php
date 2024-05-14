@@ -2,12 +2,6 @@
 
 @section('content')
 
-<style>
-    .notif-title {
-        font-size: 15pt;
-    }
-</style>
-
 <div class="d-flex justify-content-center align-items-center">
     <div class="card" style="width: 40rem;">
         <div class="card-body animated-content">

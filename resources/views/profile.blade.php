@@ -14,28 +14,23 @@
                 </h1>
                 <div class="row">
                     <div class="col">
-                        <style>
-                            .profile{
-                                margin-left: 25px;
-                            }
-                        </style>
-                        <a href="editprofile" style="color: green">
+                        <a href="{{ url('user/profile/edit') }}" style="color: green">
                             <p class="text-body-secondary text-center">
                                 <i class="fas fa-edit"></i> Edit Profile
                             </p>
                         </a>
                         <br><h5 class="profile">NAMA LENGKAP</h5>
-                        <p class="profile">{{ session('name') }}</p>
+                        <p class="profile">{{ session('idpengguna')['name'] }}</p>
                         <br><h5 class="profile">USERNAME</h5>
-                        <p class="profile">{{ session('username') }}</p>
+                        <p class="profile">{{ session('idpengguna')['username'] }}</p>
                         <br><h5 class="profile">JENIS KELAMIN</h5>
-                        <p class="profile">{{ session('gender') }}</p>
+                        <p class="profile">{{ session('idpengguna')['gender'] }}</p>
                         <br><h5 class="profile">ALAMAT</h5>
-                        <p class="profile">{{ session('address') }}</p>
+                        <p class="profile">{{ session('idpengguna')['address'] }}</p>
                         <br><h5 class="profile">NOMOR TELEPON</h5>
-                        <p class="profile">{{ session('phonenumber') }}</p>
+                        <p class="profile">{{ session('idpengguna')['phonenumber'] }}</p>
                         <br><h5 class="profile">EMAIL</h5>
-                        <p class="profile">{{ session('email') }}</p>
+                        <p class="profile">{{ session('idpengguna')['email'] }}</p>
                     </div>
                 </div>
             </div>

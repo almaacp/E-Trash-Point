@@ -9,94 +9,40 @@
         </div>
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 22px;
-            }
-            .table td {
-                font-size: 18px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID User</th>
+                    <th>ID</th>
                     <th>Username</th>
                     <th>Nama Lengkap</th>
                     <th>Alamat</th>
-                    <th>Nomor Telepon</th>
-                    <th>Jenis Kelamin</th>
+                    <th>No. Telp</th>
+                    <th>Gender</th>
                     <th>Email</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>almabunga</td>
-                    <td>Alma Bunga</td>
-                    <td>Surabaya</td>
-                    <td>12345678</td>
-                    <td>Perempuan</td>
-                    <td>almabunga@mail.com</td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>bkausalya</td>
-                    <td>Anak Agung Ayu Bunga Kausalya</td>
-                    <td>Denpasar</td>
-                    <td>12345678</td>
-                    <td>Perempuan</td>
-                    <td>bunga@mail.com</td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>003</td>
-                    <td>almaacp</td>
-                    <td>Alma Alya Cipta Putri</td>
-                    <td>Surabaya</td>
-                    <td>12345678</td>
-                    <td>Perempuan</td>
-                    <td>alma@mail.com</td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>004</td>
-                    <td>almabunga</td>
-                    <td>Alma Bunga</td>
-                    <td>Surabaya</td>
-                    <td>12345678</td>
-                    <td>Perempuan</td>
-                    <td>almabunga@mail.com</td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>005</td>
-                    <td>bkausalya</td>
-                    <td>Anak Agung Ayu Bunga Kausalya</td>
-                    <td>Denpasar</td>
-                    <td>12345678</td>
-                    <td>Perempuan</td>
-                    <td>bunga@mail.com</td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>006</td>
-                    <td>almaacp</td>
-                    <td>Alma Alya Cipta Putri</td>
-                    <td>Surabaya</td>
-                    <td>12345678</td>
-                    <td>Perempuan</td>
-                    <td>alma@mail.com</td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
+                @foreach ($penggunas as $pengguna)
+                    <tr>
+                        <td>{{ $pengguna->idpengguna }}</td>
+                        <td>{{ $pengguna->usernamepengguna }}</td>
+                        <td>{{ $pengguna->namapengguna }}</td>
+                        <td>{{ $pengguna->alamatpengguna }}</td>
+                        <td>{{ $pengguna->telppengguna }}</td>
+                        <td>{{ $pengguna->jkpengguna }}</td>
+                        <td>{{ $pengguna->emailpengguna }}</td>
+                        <td>
+                            <form action="{{ url('admin/profileuser/'.$pengguna->idpengguna) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link" style="color: red;">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

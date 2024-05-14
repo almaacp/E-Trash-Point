@@ -12,20 +12,6 @@
         </div>
     </div>
     <div class="mt-5">
-        <style>
-            .table th,
-            .table td {
-                text-align: center;
-                border-color: green;
-            }
-            .table th {
-                padding-bottom: 10px;
-                font-size: 25px;
-            }
-            .table td {
-                font-size: 20px;
-            }
-        </style>
         <table class="table">
             <thead>
                 <tr>
@@ -35,35 +21,36 @@
                     <th>Delete</th>
                 </tr>
             </thead>
+            @php
+                $no=1;
+            @endphp
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Jl. Tunjungan no 46</td>
-                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jl. Dharmahusada no 46</td>
-                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Jl. Dr. Ir. Soekarno no 46</td>
-                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Jl. Diponegoro no 46</td>
-                    <td><a href="konter/update"><i class="fas fa-edit" style="color: blue"></a></td>
-                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></a></td>
-                </tr>
+                @foreach ($konters as $konter)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $konter->lokasiKonter }}</td>
+                        <td><a href="{{ url('admin/konter/'.$konter->idKonter.'/update') }}"><i class="fas fa-edit" style="color: blue"></a></td>
+                        <td>
+                            <form action="{{ url('admin/konter/'.$konter->idKonter) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link" style="color: red;">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
         <br>
-        <a href="" type="button" class="btn btn-danger" style="font-size: 18px">DELETE ALL</a>
+        <form action="{{ url('admin/konter') }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" style="font-size: 18px">
+                DELETE ALL
+            </button>
+        </form>
     </div>
 </div>   
 

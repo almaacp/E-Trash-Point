@@ -1,0 +1,98 @@
+/* Front */
+body {
+    font-family: 'Fredoka', sans-serif;
+}
+body.home {
+    background-image: url('/gambar/background.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.bold-text {
+    font-weight: bold;
+}
+.animated-content {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.animated-content.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+.btn {
+    transition: transform 0.5s ease;
+}
+.btn:hover {
+    transform: translateY(-8px);
+}
+.dropdown-menu {
+    background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5)); 
+}
+.dropdown-menu .dropdown-item {
+    color: #000; 
+}
+.dropdown-menu .dropdown-item i {
+    margin-right: 8px; 
+}
+.dropdown-menu .dropdown-item:hover {
+    color: white; 
+    background-color: green;
+}
+
+/* table */
+.table th,
+.table td {         
+    text-align: center;
+    border-color: green;
+}
+.table th {
+    padding-bottom: 10px;
+    font-size: 25px;
+}
+.table td {
+    font-size: 20px;
+}
+
+/* home */
+#kategori {
+    background-color: #dbe8d6;
+    padding: 60px; 
+}
+#kategori h1,
+#kategori h2,
+#kategori p {
+    color: #3e432e;
+}
+#sdgs {
+    background-color: #d0c7ac;
+    padding: 60px; 
+}
+#sdgs h1,
+#sdgs h2,
+#sdgs p {
+    color: #6d5826;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    color: green !important;
+}
+
+/* katalog */
+.card-img-top {
+    size: 512px
+}
+.card-text {
+    font-size: 18px
+}
+
+/* notif */
+.notif-title {
+    font-size: 15pt;
+}
+
+/* profile */
+.profile{
+    margin-left: 25px;
+}
