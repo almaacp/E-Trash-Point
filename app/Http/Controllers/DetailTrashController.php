@@ -58,33 +58,33 @@ class DetailTrashController extends Controller
             'trashcode' => 'required',
             'trashAmount' => 'required|numeric|min:0',
         ]);
-
+    
         // Dapatkan trash dan jenis_trash terkait
         $trash = Trash::join('jenis_trashes', 'trashes.idJenisTrash', '=', 'jenis_trashes.idJenisTrash')
-        ->where('trashes.idTrash', $data['trashcode'])
-        ->select('trashes.*', 'jenis_trashes.poinTrash')
-        ->first();
-
+            ->where('trashes.idTrash', $data['trashcode'])
+            ->select('trashes.*', 'jenis_trashes.poinTrash')
+            ->first();
+    
         if (!$trash) {
             return back()->withErrors(['trashcode' => 'Kode trash tidak valid.']);
         }
-
-        // Perhitungan jumlah poin menggunakan $trash->poinTrash bukan $trashes->poinTrash
+    
+        // Perhitungan jumlah poin
         $jumlahPoin = $data['trashAmount'] * $trash->poinTrash;
-
+    
         // Dapatkan ID pengguna yang sedang login
-        $idPengguna = $request->idPengguna;
-
+        $idPengguna = Auth::id();
+    
         // Buat entri baru di detail_trashes
         DetailTrash::create([
-            'idPengguna' => $idPengguna, // Tambahkan ID pengguna
+            'idPengguna' => $idPengguna,
             'idTrash' => $data['trashcode'],
             'tglPembuangan' => now(),
             'jumlahPoin' => $jumlahPoin,
         ]);
-
-        return redirect('user/historibuang');
-    }
+    
+        return redirect('/user/historibuangsampah');
+    }    
 
     /**
      * Display the specified resource.

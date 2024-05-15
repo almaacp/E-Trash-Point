@@ -50,7 +50,7 @@ Route::prefix('user')->group(function () {
 
     Route::prefix('historibuangsampah')->group(function () {
         Route::get('/',[DetailTrashController::class,'index']);
-        Route::post('closetrash',[DetailTrashController::class,'closetrash']);
+        Route::post('/',[DetailTrashController::class,'store']);
     });
 
     Route::get('buangsampah',[DetailTrashController::class,'buangsampah']);

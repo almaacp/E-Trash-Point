@@ -18,11 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var button = document.getElementById('openCloseButton');
         var trashcodeInput = document.getElementById('trashcode');
-        var trashAmountInput = document.getElementById('trashAmount'); // Get the trash amount input element
+        var trashAmountInput = document.getElementById('trashAmount');
         var errorMessage = document.getElementById('error-message');
-        var errorMessageAmount = document.getElementById('error-message-amount'); // Get the error message span for trash amount
+        var errorMessageAmount = document.getElementById('error-message-amount');
         var backButton = document.getElementById('backButton'); 
-        var additionalForm = document.getElementById('additionalForm'); // New element for additional form
+        var additionalForm = document.getElementById('additionalForm');
 
         if (button.innerHTML === 'OPEN') {
             if (!trashcodeInput.value.trim()) {
@@ -33,12 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             trashcodeInput.disabled = true;
             backButton.style.display = 'none';
-            additionalForm.style.display = 'block'; // Show the additional form
+            additionalForm.style.display = 'block';
             button.innerHTML = 'CLOSE';
             button.classList.remove('btn-success');
             button.classList.add('btn-danger');
         } else {
-            // Check if the trash amount is filled
             if (!trashAmountInput.value.trim()) {
                 errorMessageAmount.textContent = 'The trashamount field is required.';
                 return;
@@ -46,17 +45,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessageAmount.textContent = ''; 
             }
 
-            var confirmation = confirm('Apakah Anda yakin ingin menutup tempat sampah?');
-            if (confirmation) {
+            var form = document.getElementById('trashForm');
+            var formData = new FormData(form);
+
+            // Kirim data formulir menggunakan Fetch API
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Setelah berhasil dikirim, alihkan ke halaman histori pembuangan sampah
                 window.location.href = "/user/historibuangsampah";
-            } else {
-                button.innerHTML = 'CLOSE';            
-                button.classList.remove('btn-success');
-                button.classList.add('btn-danger');
-                trashcodeInput.disabled = true;
-                backButton.style.display = 'none';
-                additionalForm.style.display = 'block'; // Ensure the additional form remains visible
-            }
+            })
+            .catch(error => console.error('There was a problem with the fetch operation:', error));
+
+            // Nonaktifkan tombol dan sembunyikan formulir tambahan saat formulir sedang dikirim
+            button.disabled = true;
+            trashcodeInput.disabled = true;
+            additionalForm.style.display = 'none';
         }
     });
 });
