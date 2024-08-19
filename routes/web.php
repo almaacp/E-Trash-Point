@@ -6,6 +6,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HadiahController;
 use App\Http\Controllers\KonterController;
 use App\Http\Controllers\TrashController;
+use App\Models\DetailTrash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -107,7 +108,7 @@ Route::prefix('admin')->group(function () {
     });
     
     Route::get('klaimhadiah',[AdminController::class,'klaim']);
-    Route::get('historibuangsampah',[AdminController::class,'buang']);
+    Route::get('historibuangsampah',[DetailTrashController::class,'adminBuang']);
     Route::prefix('profileuser')->group(function () {
         Route::get('/',[AdminController::class,'profile']);
         Route::delete('{idpengguna}',[AdminController::class,'destroyUser']);

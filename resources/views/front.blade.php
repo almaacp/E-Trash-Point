@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li class="nav-item btn" style="font-size: 18px; margin-right: 3mm; color: green">
-                            <i class="fas fa-coins" style="margin-right: 3mm"></i>0
+                            <i class="fas fa-coins" style="margin-right: 3mm"></i>{{ Auth::user()->poinpengguna }}
                         </li>                        
                         <li class="nav-item">
                             <a href="{{ url('logout') }}">

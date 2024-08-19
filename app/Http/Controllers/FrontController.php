@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Trash;
 use App\Models\hadiah;
 use App\Models\Konter;
+use App\Models\Voucher;
 use App\Models\Pengguna;
 use App\Models\jenisTrash;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\AdminController;
+use App\Http\Requests\StoreVoucherRequest;
 
 class FrontController extends Controller
 {
@@ -42,9 +44,9 @@ class FrontController extends Controller
             'address' => 'required',
             'phonenumber' => 'required',
             'gender' => 'required',
-            'email' => 'required',
-            'username' => 'required',
-            'password' => 'required |min:8',
+            'email' => 'required |unique:penggunas,emailpengguna',
+            'username' => 'required |unique:penggunas,usernamepengguna',
+            'password' => 'required |min:8 |confirmed',
         ]);
 
         Pengguna::create([
@@ -136,14 +138,51 @@ class FrontController extends Controller
     
     public function klaimhadiah()
     {
-        return view('klaim');
+        $vouchers = Voucher::all();
+        $penggunas = Pengguna::all();
+        $hadiahs = hadiah::all();
+        return view('klaim',[
+            'vouchers'=>$vouchers,
+            'penggunas'=>$penggunas,
+            'hadiahs'=>$hadiahs,
+        ]);
     }
 
     public function pilihhadiah()
     {
         $hadiahs = Hadiah::all();
         return view('pilih',['hadiahs'=>$hadiahs]);
-    }
+    }    
+
+    public function savehadiah(StoreVoucherRequest $request)
+    {
+        // Validasi input
+        $request->validate([
+            'idHadiah' => 'required|exists:hadiahs,idHadiah',
+        ]);
+    
+        // Mendapatkan ID pengguna yang saat ini login
+        $idpengguna = Auth::id();
+    
+        // Mendapatkan poin hadiah dari ID hadiah yang dipilih
+        $idHadiah = intval($request->input('idHadiah'));
+        $hadiah = Hadiah::findOrFail($idHadiah);
+        $poinHadiah = $hadiah->poinHadiah;
+
+        // Membuat entri voucher untuk hadiah yang diklaim
+        Voucher::create([
+            'idpengguna' => $idpengguna,
+            'idHadiah' => $idHadiah,
+            'tglKlaim' => now(),
+        ]);
+    
+        // Mengurangi poin pengguna sesuai dengan poin hadiah yang dipilih
+        $pengguna = Pengguna::findOrFail($idpengguna);
+        $pengguna->poinpengguna -= $poinHadiah;
+        $pengguna->save();
+        
+        return redirect('user/klaimhadiah');
+    }    
 
     public function konter()
     {
@@ -183,6 +222,7 @@ class FrontController extends Controller
             'password' => 'required|min:8',
         ]);
     
+        // Cari pengguna berdasarkan username
         $pengguna = Pengguna::where('usernamepengguna', $data['username'])->first();
         $admin = User::where('username', $data['username'])->first();
     
@@ -190,27 +230,31 @@ class FrontController extends Controller
             return back()->with('error', 'Username belum terdaftar');
         }
     
+        // Otentikasi sebagai admin jika ditemukan
         if ($admin && Hash::check($data['password'], $admin->password)) {
             Auth::login($admin);
             return redirect()->action([AdminController::class, 'index']);
         }
     
+        // Otentikasi sebagai pengguna jika ditemukan
         if ($pengguna && Hash::check($data['password'], $pengguna->passwordpengguna)) {
-            $data = [
+            Auth::login($pengguna);
+            $userData = [
                 'idpengguna' => $pengguna->idpengguna,
                 'username' => $pengguna->usernamepengguna,
-                'name' => $pengguna->namapengguna, 
-                'gender' => $pengguna->jkpengguna, 
+                'name' => $pengguna->namapengguna,
+                'gender' => $pengguna->jkpengguna,
                 'address' => $pengguna->alamatpengguna,
                 'phonenumber' => $pengguna->telppengguna,
                 'email' => $pengguna->emailpengguna,
+                'poinpengguna' => $pengguna->poinpengguna,
             ];
-            $request->session()->put('idpengguna', $data);
+            session()->put('idpengguna', $userData);
             return redirect('/user');
         }
     
         return back()->with('error', 'Password salah');
-    }
+    }    
         
 
     public function logout()
@@ -276,16 +320,22 @@ class FrontController extends Controller
 
     public function updatePassword(Request $request)
     {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+            'new_password_confirmation' => 'required',
+        ]);
+
         $user = Pengguna::find($request->session()->get('idpengguna')['idpengguna']);
-    
+
         if (!Hash::check($request->current_password, $user->passwordpengguna)) {
-            return redirect()->back()->withErrors(['current_password' => 'Kata sandi saat ini salah.']);
+            return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
         }
-    
+
         $user->update([
             'passwordpengguna' => Hash::make($request->new_password),
         ]);
-        
+
         return redirect('user/profile/edit');
     }
 }

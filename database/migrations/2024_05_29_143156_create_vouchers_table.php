@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_trashes', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
+            $table->increments('idVoucher');
             $table->integer('idpengguna');
-            $table->string('idTrash');
-            $table->date('tglPembuangan');
-            $table->integer('jumlahPoin');
+            $table->integer('idHadiah');
+            $table->date('tglKlaim');
+            $table->integer('tglBatasAmbil');
+            $table->enum('statusVoucher', ['Berlaku', 'Kadaluarsa']);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_trashes');
+        Schema::dropIfExists('vouchers');
     }
 };

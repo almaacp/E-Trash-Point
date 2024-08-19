@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trash;
 use App\Models\Konter;
 use App\Models\Pengguna;
+use App\Models\DetailTrash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -73,11 +76,6 @@ class AdminController extends Controller
     public function klaim()
     {
         return view('admin/klaim/content');
-    }
-
-    public function buang()
-    {
-        return view('admin/buang/content');
     }
 
     public function profile()

@@ -18,14 +18,22 @@
                                     <option value="{{ $trash->idTrash }}">{{ $trash->idTrash }}</option>
                                 @endforeach                                    
                             </select>
-                            <span class="text-danger" id="error-message"></span>
+                            <span class="text-danger">
+                                @error('trashcode')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         
-                        <div id="additionalForm" class="mt-4" style="display: none;">
+                        <div class="mt-4">
                             <label class="form-label" style="font-size: 17px" for="trashAmount">Jumlah Sampah</label>
-                            <input type="number" class="form-control" name="trashAmount" id="trashAmount" min="0" step="0.01" required>
-                            <span class="text-danger" id="error-message-amount"></span>
+                            <input type="number" class="form-control" name="trashAmount" id="trashAmount">
                         </div>
+                        <span class="text-danger">
+                            @error('trashAmount')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     
                         <div class="mt-5 text-body-secondary">Kode trash dapat dilihat di <a href="{{ url('/user/infotrash') }}" style="color: rgb(0, 185, 0)">Info Trash</a></div>
                         
@@ -34,7 +42,7 @@
                                 <a id="backButton" href="{{ url('/user/historibuangsampah') }}" class="btn btn-secondary">BACK</a>
                             </div>
                             <div>
-                                <button id="openCloseButton" class="btn btn-success">OPEN</button>
+                                <button class="btn btn-success">OPEN</button>
                             </div>
                         </div>    
                     </form>

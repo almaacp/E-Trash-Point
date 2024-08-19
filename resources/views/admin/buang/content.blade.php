@@ -20,55 +20,35 @@
                     <th>Verifikasi</th>
                 </tr>
             </thead>
+            @php
+                $no = 1;
+            @endphp
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>bkausalya</td>
-                    <td>G-001</td>
-                    <td>20/2/2024</td>
-                    <td>30</td>
-                    <td><button id="verifButton" class="btn btn-outline-danger" onclick="verif(this)">Belum Diverifikasi</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>bkausalya</td>
-                    <td>G-001</td>
-                    <td>20/2/2024</td>
-                    <td>30</td>
-                    <td><button id="verifButton" class="btn btn-outline-danger" onclick="verif(this)">Belum Diverifikasi</button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>bkausalya</td>
-                    <td>G-001</td>
-                    <td>20/2/2024</td>
-                    <td>30</td>
-                    <td><button id="verifButton" class="btn btn-outline-danger" onclick="verif(this)">Belum Diverifikasi</button></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>almaalya</td>
-                    <td>G-001</td>
-                    <td>20/2/2024</td>
-                    <td>30</td>
-                    <td><button id="verifButton" class="btn btn-outline-danger" onclick="verif(this)">Belum Diverifikasi</button></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>almaalya</td>
-                    <td>G-001</td>
-                    <td>20/2/2024</td>
-                    <td>30</td>
-                    <td><button id="verifButton" class="btn btn-outline-danger" onclick="verif(this)">Belum Diverifikasi</button></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>almaalya</td>
-                    <td>G-001</td>
-                    <td>20/2/2024</td>
-                    <td>30</td>
-                    <td><button id="verifButton" class="btn btn-outline-danger" onclick="verif(this)">Belum Diverifikasi</button></td>
-                </tr>
+                @foreach ($detailtrashes as $detailtrash)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $detailtrash->pengguna ? $detailtrash->pengguna->usernamepengguna : 'N/A' }}</td> <!-- Cek null di sini -->
+                        <td>{{ $detailtrash->idTrash }}</td>
+                        <td>{{ $detailtrash->tglPembuangan }}</td>
+                        <td>{{ $detailtrash->jumlahPoin }}</td>
+                        <td>
+                            <form action="{{ url('admin/historibuangsampah/update-status') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="idTrash" value="{{ $detailtrash->idTrash }}">
+                                <input type="hidden" name="idpengguna" value="{{ $detailtrash->idpengguna }}">
+                                @if($detailtrash->statusPoin == 'Belum Diverifikasi')
+                                    <button type="submit" class="btn btn-danger">
+                                        Belum Diverifikasi
+                                    </button>
+                                @else
+                                    <button type="submit" class="btn btn-success">
+                                        Diverifikasi
+                                    </button>
+                                @endif
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

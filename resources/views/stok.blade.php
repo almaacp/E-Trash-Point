@@ -36,9 +36,9 @@
         </table>
         <br>
         <a href="@if (request()->is('user/kataloghadiah/stok'))
-            /user/kataloghadiah
-            @else
             /kataloghadiah
+            @else
+            /user/kataloghadiah
             @endif" class="btn btn-secondary">BACK</a>
     </div>
 </div>   
