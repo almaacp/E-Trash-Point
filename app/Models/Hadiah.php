@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Hadiah extends Model
 {
@@ -15,4 +16,8 @@ class Hadiah extends Model
         'poinHadiah',
         'gambarHadiah',
     ];
+
+    public function hadiahs() : HasMany {
+        return $this->hasMany(DetailTrash::class, 'idHadiah', 'idHadiah');
+    }
 }

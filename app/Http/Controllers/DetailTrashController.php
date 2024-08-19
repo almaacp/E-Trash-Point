@@ -6,10 +6,11 @@ use App\Models\Trash;
 use App\Models\Pengguna;
 use App\Models\JenisTrash;
 use App\Models\DetailTrash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoredetailTrashRequest;
 use App\Http\Requests\UpdatedetailTrashRequest;
-use Illuminate\Support\Facades\Auth;
 
 class DetailTrashController extends Controller
 {
@@ -19,14 +20,21 @@ class DetailTrashController extends Controller
     public function index()
     {
         $detailtrashes = DetailTrash::all();
-        $trashes = Trash::join('detail_trashes', 'trashes.idTrash', '=', 'detail_trashes.idTrash')
-                        ->select(['trashes.*', 'detail_trashes.*'])
-                        ->get();
-        $penggunas = DB::table('penggunas')
-                        ->join('detail_trashes', 'penggunas.idpengguna', '=', 'detail_trashes.idPengguna')
-                        ->select(['penggunas.*', 'detail_trashes.*'])
-                        ->get();
+        $trashes = Trash::all();
+        $penggunas = Pengguna::all();
         return view('historibuang',[
+            'detailtrashes' => $detailtrashes,
+            'trashes' => $trashes,
+            'penggunas' => $penggunas
+        ]);
+    }
+
+    public function adminBuang()
+    {
+        $detailtrashes = DetailTrash::all();
+        $trashes = Trash::all();
+        $penggunas = Pengguna::all();
+        return view('admin/buang/content',[
             'detailtrashes' => $detailtrashes,
             'trashes' => $trashes,
             'penggunas' => $penggunas
@@ -59,30 +67,27 @@ class DetailTrashController extends Controller
             'trashAmount' => 'required|numeric|min:0',
         ]);
     
-        // Dapatkan trash dan jenis_trash terkait
         $trash = Trash::join('jenis_trashes', 'trashes.idJenisTrash', '=', 'jenis_trashes.idJenisTrash')
             ->where('trashes.idTrash', $data['trashcode'])
             ->select('trashes.*', 'jenis_trashes.poinTrash')
             ->first();
     
-        if (!$trash) {
-            return back()->withErrors(['trashcode' => 'Kode trash tidak valid.']);
-        }
-    
-        // Perhitungan jumlah poin
         $jumlahPoin = $data['trashAmount'] * $trash->poinTrash;
     
-        // Dapatkan ID pengguna yang sedang login
-        $idPengguna = Auth::id();
+        $idpengguna = Auth::id();
     
-        // Buat entri baru di detail_trashes
         DetailTrash::create([
-            'idPengguna' => $idPengguna,
+            'idpengguna' => $idpengguna,
             'idTrash' => $data['trashcode'],
             'tglPembuangan' => now(),
             'jumlahPoin' => $jumlahPoin,
+            'statusPoin' => 'Belum Diverifikasi',
         ]);
-    
+
+        $pengguna = Pengguna::findOrFail($idpengguna);
+        $pengguna->poinpengguna += $jumlahPoin;
+        $pengguna->save();
+
         return redirect('/user/historibuangsampah');
     }    
 
@@ -105,10 +110,22 @@ class DetailTrashController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatedetailTrashRequest $request, detailTrash $detailTrash)
+    public function update(UpdatedetailTrashRequest $request)
     {
-        //
-    }
+        $idpengguna = intval($request->input('idpengguna'));
+        $idTrash = $request->input('idTrash');
+
+        // Mencari baris yang sesuai dengan idPengguna dan idTrash
+        $detailtrash = DetailTrash::where('idPengguna', $idpengguna)
+                        ->where('idTrash', $idTrash)->first();
+    
+        // Jika data ditemukan, ubah statusPoin-nya
+        $detailtrash->statusPoin = ($detailtrash->statusPoin == 'Belum Diverifikasi') ? 'Terverifikasi' : 'Belum Diverifikasi';
+        $detailtrash->save();
+        
+        // Mengarahkan ulang ke halaman historibuangsampah
+        return redirect('admin/historibuangsampah');
+    }    
 
     /**
      * Remove the specified resource from storage.

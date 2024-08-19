@@ -40,6 +40,7 @@ class TrashController extends Controller
         $data = $request->validate([
             'trashcode' => 'required',
             'locate' => 'required',
+            'idJenisTrash' => 'required',
         ]);
 
         $idJenisTrash = $request->idJenisTrash;

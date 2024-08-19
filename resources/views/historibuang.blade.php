@@ -24,6 +24,9 @@
                     <th>Poin</th>
                 </tr>
             </thead>
+            @php
+                $no=1;
+            @endphp
             <tbody>
                 @foreach ($detailtrashes as $detailtrash)
                     <tr>

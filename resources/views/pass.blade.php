@@ -11,6 +11,11 @@
                     @csrf
 
                     <div class="mt-2">
+                        <span class="text-danger">
+                            @error('current_password')
+                                {{ $message }}
+                            @enderror
+                        </span>
                         <div class="input-group mb-4">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                             <div class="form-floating">
@@ -21,14 +26,14 @@
                                 <i id="current_password-toggle" class="fas fa-eye-slash"></i>
                             </span>
                         </div>
-                        <span class="text-danger">
-                            @error('current_password')
-                                {{ $message }}
-                            @enderror
-                        </span>
                     </div>
 
                     <div class="mt-2">
+                        <span class="text-danger">
+                            @error('new_password')
+                                {{ $message }}
+                            @enderror
+                        </span>
                         <div class="input-group mb-4">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                             <div class="form-floating">
@@ -39,14 +44,14 @@
                                 <i id="new_password-toggle" class="fas fa-eye-slash"></i>
                             </span>
                         </div>
-                        <span class="text-danger">
-                            @error('new_password')
-                                {{ $message }}
-                            @enderror
-                        </span>
                     </div>
 
                     <div class="mt-2">
+                        <span class="text-danger">
+                            @error('new_password_confirmation')
+                                {{ $message }}
+                            @enderror
+                        </span>
                         <div class="input-group mb-4">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
                             <div class="form-floating">
@@ -57,11 +62,6 @@
                                 <i id="new_password_confirmation-toggle" class="fas fa-eye-slash"></i>
                             </span>
                         </div>
-                        <span class="text-danger">
-                            @error('new_password_confirmation')
-                                {{ $message }}
-                            @enderror
-                        </span>
                     </div>
 
                     <div class="mt-5 d-flex justify-content-between">

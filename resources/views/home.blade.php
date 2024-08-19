@@ -2,6 +2,8 @@
 
 @section('content')
 
+<!--E-Trash Point Project done!-->
+
 <section id="about-us" class="animated-content">
     <div class="row animated-content">
         <div class="row">

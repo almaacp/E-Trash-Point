@@ -27,6 +27,7 @@
                         <div class="card-body">
                             <h2 class="card-title-katalog">{{ $hadiah->namaHadiah }}</h2>
                             <p class="card-text">{{ $hadiah->poinHadiah." poin" }}</p>
+                            <input type="hidden" name="idHadiah" value="{{ $hadiah->idHadiah }}">
                             <button class="mt-3 btn btn-light" type="submit">Klaim Hadiah</button>
                         </div>
                     </div>

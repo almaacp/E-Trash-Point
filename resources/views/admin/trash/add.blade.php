@@ -14,6 +14,11 @@
             <form action="{{ url('/admin/infotrash') }}" method="post">
                 @csrf
 
+                <span class="text-danger">
+                    @error('trashcode')
+                    {{ $message }}
+                    @enderror
+                </span>
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-code"></i></span>
                     <div class="form-floating">
@@ -21,12 +26,12 @@
                         <label for="codetrash">KODE TRASH</label>
                     </div>
                 </div>
+
                 <span class="text-danger">
-                    @error('trashcode')
+                    @error('locate')
                     {{ $message }}
                     @enderror
                 </span>
-
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
                     <div class="form-floating">
@@ -34,12 +39,12 @@
                         <label for="locate">LOKASI TRASH</label>
                     </div>
                 </div>
+                
                 <span class="text-danger">
-                    @error('locate')
-                    {{ $message }}
+                    @error('idJenisTrash')
+                        {{ $message }}
                     @enderror
                 </span>
-                
                 <div class="input-group mb-4">
                     <span class="input-group-text"><i class="fas fa-trash"></i></span>
                     <div class="form-floating">
@@ -52,11 +57,6 @@
                         <label for="idJenisTrash">JENIS TRASH</label>
                     </div>
                 </div>               
-                <span class="text-danger">
-                    @error('idJenisTrash')
-                        {{ $message }}
-                    @enderror
-                </span>
                 
                 <div class="mt-5 text-center">
                     <a href="{{ url('/admin/infotrash') }}" class="btn btn-secondary">BACK</a>

@@ -10,7 +10,7 @@
                 <div class="mt-2 text-body-secondary text-center">Have an account? <a href="{{ url('/login') }}" style="color: rgb(0, 185, 0)">Login</a></div>
                 <div class="row">
                     <div class="col">
-                        <form action="{{ url('/login') }}" method="post">
+                        <form action="{{ url('/register') }}" method="post">
                             @csrf
 
                             <br><br>
@@ -102,7 +102,7 @@
                                     {{ $message }}
                                 @enderror
                             </span>
-                            <div class="input-group mb-2">
+                            <div class="input-group mb-4">
                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                 <div class="form-floating">
                                     <input class="form-control" type="password" name="password" id="password" placeholder=" ">
@@ -112,7 +112,23 @@
                                     <i id="password-toggle" class="fas fa-eye-slash"></i>
                                 </span>
                             </div>
-                            
+
+                            <span class="text-danger">
+                                @error('password_confirmation')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                            <div class="input-group mb-4">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <div class="form-floating">
+                                    <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" placeholder=" ">
+                                    <label for="password_confirmation">KONFIRMASI PASSWORD</label>
+                                </div>
+                                <span class="input-group-text bg-white" onclick="togglePasswordVisibility('password_confirmation', 'password_confirmation-toggle')">
+                                    <i id="password_confirmation-toggle" class="fas fa-eye-slash"></i>
+                                </span>
+                            </div>
+
                             <div class="mt-5 d-flex justify-content-between">
                                 <a href="{{ url('/') }}" class="btn btn-secondary">BACK</a>
                                 <button class="btn btn-success" type="submit">REGISTER</button>
@@ -125,5 +141,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection
