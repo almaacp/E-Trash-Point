@@ -39,7 +39,7 @@
                     <th>Tanggal Ambil</th>
                 </tr>
             </thead>
-            @php
+            {{-- @php
                 $no=1;
             @endphp
             <tbody>
@@ -56,6 +56,52 @@
                         <td>-</td>
                     </tr>
                 @endforeach
+            </tbody> --}}
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>20/2/2024</td>
+                    <td>Kaos</td>
+                    <td>100</td>
+                    <td></td>
+                    <td><a href=""></a></td>
+                    <td><a href=""></a></td>
+                    <td>Kadaluarsa</td>
+                    <td><i class="fas fa-times" style="color: red"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>27/2/2024</td>
+                    <td>Totebag</td>
+                    <td>50</td>
+                    <td></td>
+                    <td><a href=""></a></td>
+                    <td><a href=""></a></td>
+                    <td>Sudah diambil</td>
+                    <td>28/2/2024</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>28/2/2024</td>
+                    <td>Notebook</td>
+                    <td>30</td>
+                    <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
+                    <td><a href=""></a></td>
+                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></i></a></td>
+                    <td>Belum diambil</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>1/3/2024</td>
+                    <td>Notebook</td>
+                    <td>30</td>
+                    <td><a href="/user/klaimhadiah/voucher" style="color: green"><i class="fas fa-ticket-alt"></i></a></td>
+                    <td><a href="/user/pilihhadiah"><i class="fas fa-edit" style="color: blue"></i></a></td>
+                    <td><a href=""><i class="fas fa-trash-alt" style="color: red"></i></a></td>
+                    <td>Belum diambil</td>
+                    <td></td>
+                </tr>
             </tbody>
         </table>
     </div>

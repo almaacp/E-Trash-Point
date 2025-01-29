@@ -10,7 +10,7 @@
                 <div class="mt-2 text-body-secondary text-center">Have an account? <a href="{{ url('/login') }}" style="color: rgb(0, 185, 0)">Login</a></div>
                 <div class="row">
                     <div class="col">
-                        <form action="{{ url('/register') }}" method="post">
+                        <form action="{{ url('/login') }}" method="post">
                             @csrf
 
                             <br><br>
